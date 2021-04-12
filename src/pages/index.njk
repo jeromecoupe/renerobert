@@ -1,0 +1,36 @@
+---
+permalink: index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% import "macros/dates.njk" as dates %}
+
+{% block content %}
+<div>
+  <div class="l-container">
+    <h1>René Robert</h1>
+  </div>
+</div>
+<div>
+  <div class="l-container">
+    {% set allProjects = collections.projects %}
+    {% for project in allProjects %}
+      {% if loop.first %}<ul>{% endif %}
+        <li>
+          <article>
+            <a href="{{ project.url }}" aria-label="{{ project.data.title }}">
+              <img src="/assets/img/projects_covers/{{ project.data.bannerImage }}"
+                   class="o-fluidimg"
+                   alt="">
+              <p>{{ dates.htmldate(project.date) }}</p>
+              <h2>{{ project.data.title }}</h2>
+              <p>{{ project.data.summary }}</p>
+            </a>
+          </article>
+        </li>
+      {% if loop.last %}</ul>{% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

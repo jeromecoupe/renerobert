@@ -1,0 +1,56 @@
+{
+  "name": "rene_robert",
+  "version": "1.0.0",
+  "description": "René Robert: outdoor photographer",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not IE <= 11"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "styles:dev": "sass --source-map --embed-source-map --source-map-urls=absolute ./src/assets/scss/main.scss dist/assets/css/main.css",
+    "styles:prod": "sass --no-source-map --style=compressed src/assets/scss/main.scss dist/assets/css/main.css",
+    "poststyles:prod": "postcss dist/assets/css/main.css --replace --no-map --use autoprefixer cssnano",
+    "scripts:prod": "webpack --config webpack.config.js --mode production",
+    "scripts:dev": "webpack --config webpack.config.js --mode development",
+    "server": "browser-sync start --server \"dist\" --files \"dist\" --no-open",
+    "eleventy": "npx eleventy --quiet",
+    "watch:eleventy": "npx eleventy --watch --quiet",
+    "watch:scripts": "onchange \"src/assets/js/**/*\" -- npm run scripts:dev",
+    "watch:styles": "onchange \"src/assets/scss/**/*\" -- npm run styles:dev",
+    "build": "npm-run-all clean --parallel styles:prod scripts:prod eleventy",
+    "watch": "npm-run-all --parallel server watch:*",
+    "dev": "npm run watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.14",
+    "cssnano": "^4.1.11",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss": "^8.2.9",
+    "postcss-cli": "^8.3.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.32.8",
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "keywords": [
+    "photos",
+    "outdoor",
+    "Antarctica"
+  ],
+  "author": "Jérôme Coupé",
+  "license": "UNLICENSED"
+}
