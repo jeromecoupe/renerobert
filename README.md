@@ -1,4 +1,4 @@
-# René robert's website
+# René Robert's website
 
 Running on [Eleventy](https://www.11ty.dev/)
 Using NPM scripts and [Webpack](https://webpack.js.org/) for the build pipeline.
