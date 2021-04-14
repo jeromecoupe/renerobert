@@ -1,0 +1,51 @@
+// ----------------------------------
+// =touchnav
+// ----------------------------------
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.c-touchnav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .is-active & {
+    animation: menuAppear 0.2s ease-out both;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+.c-touchnav__item:not(:last-child) {
+  margin-bottom: calc(3 / 16 * 1rem);
+}
+
+.c-touchnav__link {
+  display: block;
+  padding-top: calc(12 / 16 * 1rem);
+  padding-bottom: calc(12 / 16 * 1rem);
+
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--color-gray8);
+
+  @include breakpoint(medium) {
+    font-weight: 400;
+    font-size: calc(24 / 16 * 1rem);
+    text-transform: none;
+  }
+}
+
+.c-touchnav__link.is-active {
+  color: var(--color-brand);
+}

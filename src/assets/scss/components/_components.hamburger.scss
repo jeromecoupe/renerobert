@@ -1,0 +1,21 @@
+// ----------------------------------
+// =hamburger
+// ----------------------------------
+
+.c-hamburger {
+  margin: 0;
+  padding: 0;
+
+  & > a {
+    display: block;
+    padding: calc(6 / 16 * 1rem) calc(3 / 16 * 1rem);
+  }
+
+  & svg {
+    display: block;
+  }
+
+  @include breakpoint(large) {
+    display: none;
+  }
+}

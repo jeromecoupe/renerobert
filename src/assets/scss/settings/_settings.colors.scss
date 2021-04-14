@@ -3,7 +3,7 @@
 // ----------------------------------
 
 :root {
-  --color-gray1: hsl(0, 0%, 3%);
+  --color-gray1: hsl(0, 0%, 6%);
   --color-gray2: hsl(0, 0%, 12%);
   --color-gray3: hsl(0, 0%, 30%);
   --color-gray4: hsl(0, 0%, 42%);
@@ -15,4 +15,6 @@
   --color-brand: hsl(47, 70%, 60%);
   --color-brand-dark: hsl(47, 60%, 54%);
   --color-brand-bright: hsl(47, 84%, 54%);
+
+  --color-white: hsl(100, 100%, 100%);
 }

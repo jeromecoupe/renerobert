@@ -7,4 +7,9 @@
   margin: 0 auto;
   padding-right: calc(18 / 16 * 1rem);
   padding-left: calc(18 / 16 * 1rem);
+
+  @include breakpoint(medium) {
+    padding-right: calc(30 / 16 * 1rem);
+    padding-left: calc(30 / 16 * 1rem);
+  }
 }

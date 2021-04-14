@@ -1,0 +1,22 @@
+.c-logo {
+  margin: 0;
+  width: 112px;
+  height: 18px;
+
+  & > a,
+  & img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  @include breakpoint(medium) {
+    width: 130px;
+    height: 21px;
+  }
+
+  @include breakpoint(large) {
+    width: 156px;
+    height: 25px;
+  }
+}
