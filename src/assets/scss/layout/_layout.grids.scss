@@ -13,6 +13,8 @@ $brakpoints-map: (
   "xlarge": "all and (min-width: 1440px)",
 ) !default;
 
+$grid-gap: calc(30 / 16 * 1rem);
+
 // ----------------------------------
 // =base classes
 // ----------------------------------
@@ -23,8 +25,41 @@ $brakpoints-map: (
   padding: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: calc(30 / 16 * 1rem);
+  gap: $grid-gap;
 }
 
 .l-grid--2cols {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.l-grid--3cols {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.l-grid--4cols {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+// ----------------------------------
+// =rwd classes
+// ----------------------------------
+
+@each $name, $query in $breakpoints-map {
+  @media #{$query} {
+    .l-grid--full\@#{$name} {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .l-grid--2cols\@#{$name} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .l-grid--3cols\@#{$name} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .l-grid--4cols\@#{$name} {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 }

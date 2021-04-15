@@ -1,0 +1,71 @@
+// ----------------------------------
+// =site footer
+// ----------------------------------
+
+.c-sitefooter {
+  background-color: var(--color-gray1);
+  padding-top: 30px;
+
+  @include breakpoint(small) {
+    padding-top: 48px;
+  }
+
+  @include breakpoint(medium) {
+    padding-top: 60px;
+  }
+
+  @include breakpoint(large) {
+    padding-top: 84px;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-top: 90px;
+  }
+}
+
+.c-sitefooter__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "about"
+    "nav"
+    "hire"
+    "copy";
+  gap: calc(18 / 16 * 1rem);
+
+  @include breakpoint(medium) {
+    grid-template-columns: 5fr 2fr 3fr;
+    grid-template-areas:
+      "about  nav   hire"
+      "copy   copy  copy";
+    gap: calc(30 / 16 * 1rem);
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: 5fr 2fr 4fr;
+    gap: calc(42 / 16 * 1rem);
+  }
+}
+
+.c-sitefooter__about {
+  grid-area: about;
+}
+
+.c-sitefooter__nav {
+  grid-area: nav;
+}
+
+.c-sitefooter__hire {
+  grid-area: hire;
+}
+
+.c-sitefooter__copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  grid-area: copy;
+
+  & > p {
+    margin: 0;
+    padding-top: calc(12 / 16 * 2rem);
+    padding-bottom: calc(12 / 16 * 2rem);
+  }
+}

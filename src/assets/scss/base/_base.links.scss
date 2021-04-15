@@ -1,0 +1,14 @@
+// ----------------------------------
+// =links
+// ----------------------------------
+
+a {
+  color: var(--color-brand);
+  text-decoration-color: var(--color-brand-dark);
+  text-underline-offset: calc(3 / 16 * 1rem);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

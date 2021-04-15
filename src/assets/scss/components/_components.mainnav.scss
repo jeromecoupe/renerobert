@@ -23,7 +23,7 @@
 
 .c-mainnav__link {
   display: inline-block;
-  padding: calc(9 / 16 * 1rem) calc(12 / 16 * 1rem);
+  padding: calc(12 / 16 * 1rem) calc(12 / 16 * 1rem);
   color: var(--color-gray8);
   font-weight: 600;
   font-size: calc(14 / 16 * 1rem);
@@ -48,5 +48,5 @@
 .c-mainnav__link.is-active,
 .c-mainnav__link.is-active {
   color: var(--color-brand);
-  border-color: var(--color-brand);
+  border-color: var(--color-brand-dark);
 }
