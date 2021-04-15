@@ -1,37 +1,45 @@
 {% extends "layouts/base.njk" %}
 
+{% import "macros/dates.njk" as dates %}
+
 {% block content %}
-  <div>
-    <img src="/assets/img/projects_covers/{{ bannerImage }}"
-         class="o-fluidimg  o-fluidimg--full"
-         alt="{{ title }}">
+  <div class="c-pagebanner">
+      <img src="/assets/img/projects_covers/{{ bannerImage }}"
+           class="c-pagebanner__image"
+           alt="{{ title }}">
   </div>
-  <div class="l-container">
-    <p>Project Year: {{ year }}</p>
-    <h1>{{ title }}</h1>
-    <p>Client: {% if clientUrl %}<a href="{{ clientUrl }}">{% endif %}{{ client }}{% if clientUrl %}</a>{% endif %}</p>
-    <div>
-      <p>{{ summary }}</p>
+  <div class="c-pagesection">
+    <div class="l-container  l-container--text">
+      <p><p>{{ dates.htmldate(pubDate) }}</p></p>
+      <h1>{{ title }}</h1>
+      <p>Client: {% if clientUrl %}<a href="{{ clientUrl }}">{% endif %}{{ client }}{% if clientUrl %}</a>{% endif %}</p>
+      <div>
+        <p>{{ summary }}</p>
+      </div>
+      {{ content | safe }}
     </div>
-    {{ content | safe }}
-    {% for picture in pictures %}
-      {% if loop.first %}<ul>{% endif %}
-        <li>
-          <figure>
-            <img src="/assets/img/projects/{{ picture.file }}"
-                 class="o-fluidimg"
-                 alt="{{ picture.title }}">
-            <figcaption>
-              <h2>{{ picture.title }}</h2>
-              <p>{{ picture.caption }}</p>
-              <ul>
-                <li>{{ picture.location }}</li>
-                <li>{{ picture.date | date("MMMM, DD YYYY") }}</li>
-              </ul>
-            </figcaption>
-          </figure>
-        </li>
-      {% if loop.last %}</ul>{% endif %}
-    {% endfor %}
+  </div>
+  <div class="c-pagesection  c-pagesection--highlight">
+    <div class="l-container  l-container--narrow">
+      {% for picture in pictures %}
+        {% if loop.first %}<ul>{% endif %}
+          <li>
+            <figure>
+              <img src="/assets/img/projects/{{ picture.file }}"
+                  class="o-fluidimg"
+                  alt="{{ picture.title }}">
+              <figcaption>
+                <h2>{{ picture.title }}</h2>
+                <p>{{ picture.caption }}</p>
+                <ul>
+                  <li>{{ picture.location }}</li>
+                  <li>{{ picture.date | date("MMMM, DD YYYY") }}</li>
+                </ul>
+              </figcaption>
+            </figure>
+          </li>
+        {% if loop.last %}</ul>{% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

@@ -1,0 +1,32 @@
+// ----------------------------------
+// =page section
+// ----------------------------------
+
+.c-pagesection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  @include breakpoint(small) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  @include breakpoint(medium) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  @include breakpoint(large) {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
+
+.c-pagesection--highlight {
+  background-color: var(--color-gray2);
+}
