@@ -4,6 +4,10 @@
 
 .u-text-medium {
   font-size: calc(18 / 16 * 1rem) !important;
+
+  @include breakpoint(xlarge) {
+    font-size: calc(20 / 16 * 1rem) !important;
+  }
 }
 
 // ----------------------------------

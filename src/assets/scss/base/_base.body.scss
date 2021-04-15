@@ -8,4 +8,8 @@ body {
   background-color: var(--color-gray1);
   color: var(--color-gray5);
   min-height: 100vh;
+
+  @include breakpoint(xlarge) {
+    font-size: calc(18 / 16 * 1rem);
+  }
 }
