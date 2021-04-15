@@ -1,0 +1,44 @@
+---
+pagination:
+  size: 1
+  data: collections.projectsCategories
+  alias: currentCategory
+permalink: work/{{ currentCategory | slug }}/index.html
+---
+
+{% extends "layouts/base.njk" %}
+{% import "macros/dates.njk" as dates %}
+
+{% set currentSection = "work" %}
+
+{% block content %}
+  <h1>Work in {{ currentCategory }}</h1>
+
+  {% set categories = collections.projectsCategories %}
+
+  {% for category in categories %}
+    {% if loop.first %}<ul class="c-categories">{% endif %}
+      <li class="c-categories__item"><a href="/work/{{ category | slug }}" class="c-categories__link  {{ 'is-active' if category == currentCategory }}">{{ category }}</a></li>
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
+
+  {% set catProjects = collections.projects | include("data.categories", currentCategory) %}
+  {% for project in catProjects %}
+    {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
+        <li>
+
+          <article>
+            <a href="{{ project.url }}" aria-label="{{ project.data.title }}">
+              <img src="/assets/img/projects_covers/{{ project.data.bannerImage }}"
+                   class="o-fluidimg"
+                   alt="">
+              <p>{{ dates.htmldate(project.pubDate) }}</p>
+              <h2>{{ project.data.title }}</h2>
+              <p>{{ project.data.summary }}</p>
+            </a>
+          </article>
+
+        </li>
+      {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,6 +1,5 @@
-<ul class="c-mainnav">
-  <li class="c-mainnav__item"><a class="c-mainnav__link  is-active" href="/">Home</a></li>
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="/work/">Work</a></li>
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="/about/">About</a></li>
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="/hire/">Hire me</a></li>
-</ul>
+{% for navItem in nav %}
+  {% if loop.first %}<ul class="c-mainnav">{% endif %}
+    <li class="c-mainnav__item"><a class="c-mainnav__link  {{ 'is-active' if navItem.trigger == currentSection }}" href="{{ navItem.url }}">{{ navItem.label }}</a></li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}

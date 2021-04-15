@@ -14,6 +14,7 @@ $brakpoints-map: (
 ) !default;
 
 $grid-gap: calc(30 / 16 * 1rem);
+$grid-min-column-width: calc(270 / 16 * 1rem);
 
 // ----------------------------------
 // =base classes
@@ -26,6 +27,10 @@ $grid-gap: calc(30 / 16 * 1rem);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: $grid-gap;
+}
+
+.l-grid--fluid {
+  grid-template-columns: repeat(auto-fit, minmax($grid-min-column-width, 1fr));
 }
 
 .l-grid--2cols {

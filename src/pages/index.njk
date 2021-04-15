@@ -4,8 +4,9 @@ bannerImage: banner_home.jpg
 ---
 
 {% extends "layouts/base.njk" %}
-
 {% import "macros/dates.njk" as dates %}
+
+{% set currentSection = "home" %}
 
 {% block content %}
 <div class="c-pagebanner">
@@ -16,12 +17,26 @@ bannerImage: banner_home.jpg
 
 <div class="c-pagesection">
   <div class="l-container">
+
     <h1 class="c-h1">René Robert</h1>
-    <div class="u-text-medium  u-text-gray8">
-      <p>I am an outdoor photographer with more than 20 years of experience living in Chamonix Mont-Blanc, France.</p>
+    <div class="l-split  l-split--7fr5fr">
+      <div class="l-split__primary">
+        <div class="u-text-medium  u-text-gray8">
+          <p>I am an outdoor photographer with more than 20 years of experience living in Chamonix Mont-Blanc, France.</p>
+        </div>
+        <p>Throughout my career, I have been following explorers, mountain climbers, skiers and snowboarders. I have also worked for the press as well as on advertising and marketting material for well known brands.</p>
+        <p>This site is my online portfolio, presenting the work I have done for a wide variety of clients.</p>
+      </div>
+      <div class="l-split__secondary">
+        {% set categories = collections.projectsCategories %}
+        {% for category in categories %}
+          {% if loop.first %}<ul class="c-categories">{% endif %}
+            <li class="c-categories__item"><a href="/work/{{ category | slug }}" class="c-categories__link">{{ category }}</a></li>
+          {% if loop.last %}</ul>{% endif %}
+        {% endfor %}
+      </div>
     </div>
-    <p>Throughout my career, I have been following explorers, mountain climbers, skiers and snowboarders. I have also worked for the press as well as on advertising and marketting material for well known brands.</p>
-    <p>This site is my online portfolio, presenting the work I have done for a wide variety of clients.</p>
+
   </div>
 </div>
 <div class="c-pagesection  c-pagesection--highlight">
