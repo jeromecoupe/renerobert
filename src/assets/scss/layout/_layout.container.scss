@@ -13,3 +13,11 @@
     padding-left: calc(30 / 16 * 1rem);
   }
 }
+
+.l-container--narrow {
+  max-width: 1024px;
+}
+
+.l-container--text {
+  max-width: 85ch;
+}

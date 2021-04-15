@@ -1,10 +1,11 @@
 ---
 title: "Le pas dans le vide"
-date: 2001-01-20
+pubDate: 2013-01-20
 client: Eiffage
 clientUrl: http://www.eiffage.com/
 summary: "The Compagnie du Mont-Blanc is doing a lot of work on the Aiguille du Midi in Chamonix. Eiffage asked me to follow the construction of a glass cube allowing visitors to experience heights."
 bannerImage: pas_dans_vide.jpg
+categories: "Branding & Marketing"
 pictures:
   - title: Heights
     file: pas_dans_vide_001.jpg

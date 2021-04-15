@@ -1,5 +1,6 @@
 ---
 permalink: index.html
+bannerImage: banner_home.jpg
 ---
 
 {% extends "layouts/base.njk" %}
@@ -7,27 +8,40 @@ permalink: index.html
 {% import "macros/dates.njk" as dates %}
 
 {% block content %}
-<div>
+<div class="c-pagebanner">
+  <img src="/assets/img/banners/{{ bannerImage }}"
+       class="c-pagebanner__image"
+       alt="René Robert in Antarctica">
+</div>
+
+<div class="c-pagesection">
   <div class="l-container">
-    <h1>René Robert</h1>
+    <h1 class="c-h1">René Robert</h1>
+    <div class="u-text-medium  u-text-gray8">
+      <p>I am an outdoor photographer with more than 20 years of experience living in Chamonix Mont-Blanc, France.</p>
+    </div>
+    <p>Throughout my career, I have been following explorers, mountain climbers, skiers and snowboarders. I have also worked for the press as well as on advertising and marketting material for well known brands.</p>
+    <p>This site is my online portfolio, presenting the work I have done for a wide variety of clients.</p>
   </div>
 </div>
-<div>
+<div class="c-pagesection  c-pagesection--highlight">
   <div class="l-container">
     {% set allProjects = collections.projects %}
     {% for project in allProjects %}
-      {% if loop.first %}<ul>{% endif %}
+      {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
         <li>
+
           <article>
             <a href="{{ project.url }}" aria-label="{{ project.data.title }}">
               <img src="/assets/img/projects_covers/{{ project.data.bannerImage }}"
                    class="o-fluidimg"
                    alt="">
-              <p>{{ dates.htmldate(project.date) }}</p>
+              <p>{{ dates.htmldate(project.pubDate) }}</p>
               <h2>{{ project.data.title }}</h2>
               <p>{{ project.data.summary }}</p>
             </a>
           </article>
+
         </li>
       {% if loop.last %}</ul>{% endif %}
     {% endfor %}
