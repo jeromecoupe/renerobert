@@ -13,17 +13,27 @@
 }
 
 .c-h1 {
-  font-size: calc(48 / 16 * 1rem);
-  line-height: calc(54 / 48);
+  font-size: calc(33 / 16 * 1rem);
+  line-height: calc(36 / 33);
 
   @include breakpoint(medium) {
-    font-size: calc(48 / 16 * 1rem);
-    line-height: calc(54 / 48);
+    font-size: calc(40 / 16 * 1rem);
+    line-height: calc(48 / 40);
   }
 
   @include breakpoint(large) {
     font-size: calc(48 / 16 * 1rem);
     line-height: calc(54 / 48);
+  }
+}
+
+.c-h2 {
+  font-size: calc(28 / 16 * 1rem);
+  line-height: calc(36 / 28);
+
+  @include breakpoint(large) {
+    font-size: calc(33 / 16 * 1rem);
+    line-height: calc(42 / 33);
   }
 }
 

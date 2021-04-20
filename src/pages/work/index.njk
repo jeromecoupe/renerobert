@@ -1,11 +1,60 @@
 ---
-permalink: work/index.html
+bannerImage: banner_work.jpg
+pagination:
+  size: 12
+  data: collections.projects
+  alias: projects
+permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html
 ---
 
-{% extends "layouts/base.njk" %}
+{% extends "layouts/page.njk" %}
+
+{% import "macros/dates.njk" as dates %}
 
 {% set currentSection = "work" %}
 
-{% block content %}
-  <h1>My work</h1>
+{% block pagecontent %}
+  <div class="c-pagesection">
+    <div class="l-container">
+
+      <div class="l-split  l-split--1fr2fr">
+        <div class="l-split__primary">
+          <h1 class="c-h1">My work</h1>
+        </div>
+        <div class="l-split__secondary">
+          {# categories #}
+          {% set categories = collections.projectsCategories %}
+          {% for category in categories %}
+            {% if loop.first %}
+              <ul class="c-categories  c-categories--columns">
+                <li class="c-categories__item"><a href="/work/" class="c-categories__link  {{ 'is-active' if page.fileSlug == 'work' }}">All categories</a></li>
+            {% endif %}
+                <li class="c-categories__item"><a href="/work/{{ category.slug }}" class="c-categories__link  {{ 'is-active' if category.slug == currentCategory.slug }}">{{ category.title }}</a></li>
+            {% if loop.last %}</ul>{% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="c-pagesection  c-pagesection--highlight">
+    <div class="l-container">
+
+      {# projects #}
+      {% set allProjects = projects %}
+      {% for project in allProjects %}
+        {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
+            <li>
+
+              {% include "components/projectcard.njk" %}
+
+            </li>
+          {% if loop.last %}</ul>{% endif %}
+      {% endfor %}
+
+      {% include "components/pagination.njk" %}
+
+    </div>
+  </div>
 {% endblock %}

@@ -5,7 +5,7 @@
  */
 
 module.exports = (collection) => {
-  return collection
-    .getFilteredByGlob("./src/projects/*.md")
-    .sort((a, b) => b.date - a.date);
+  return collection.getFilteredByGlob("./src/projects/*.md").sort((a, b) => {
+    return b.date - a.date;
+  });
 };

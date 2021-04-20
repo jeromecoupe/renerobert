@@ -8,14 +8,19 @@
   padding: 0;
 }
 
+.c-categories--columns {
+  column-width: 250px;
+  column-gap: calc(30 / 16 * 1rem);
+}
+
 .c-categories__item:not(:last-child) {
   margin-bottom: calc(3 / 16 * 1rem);
 }
 
 .c-categories__link {
   display: inline-block;
-  padding-top: calc(3 / 16 * 1rem);
-  padding-bottom: calc(3 / 16 * 1rem);
+  padding-top: calc(6 / 16 * 1rem);
+  padding-bottom: calc(6 / 16 * 1rem);
   font-size: calc(14 / 16 * 1rem);
   line-height: calc(24 / 15);
   color: var(--color-brand);
@@ -27,4 +32,8 @@
   &:focus {
     color: var(--color-brand-dark);
   }
+}
+
+.c-categories__link.is-active {
+  color: var(--color-white);
 }

@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 /**
  * Format dates using moment.js
  *
@@ -6,9 +8,6 @@
  * @param {String} locale - Locale code
  * @return {String} formatted date
  */
-
-const moment = require("moment");
-
 module.exports = function (date, format, locale) {
   locale = locale ? locale : "en";
   moment.locale(locale);

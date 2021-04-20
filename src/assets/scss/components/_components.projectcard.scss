@@ -1,0 +1,42 @@
+// ----------------------------------
+// =project card
+// ----------------------------------
+.c-projectcard {
+  margin: 0;
+}
+
+.c-projectcard__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.c-projectcard__image {
+  margin-bottom: calc(30 / 16 * 1rem);
+}
+
+.c-projectcard__date {
+  margin-bottom: calc(6 / 16 * 1rem);
+}
+
+.c-projectcard__title {
+  margin-bottom: calc(18 / 16 * 1rem);
+  font-weight: 400;
+  font-size: calc(23 / 16 * 1rem);
+  line-height: calc(30 / 23);
+  font-family: var(--fontstack-alt);
+  color: var(--color-brand);
+
+  a:hover & {
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand-dark);
+    text-decoration-thickness: 1px;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: calc(4 / 16 * 1rem);
+  }
+
+  @include breakpoint(large) {
+    font-size: calc(28 / 16 * 1rem);
+    line-height: calc(36 / 28);
+  }
+}

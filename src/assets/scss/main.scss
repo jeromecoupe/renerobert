@@ -23,6 +23,13 @@
 @import "components/_components.pagebanner.scss";
 @import "components/_components.pagesection.scss";
 @import "components/_components.categories.scss";
+@import "components/_components.projectcard.scss";
+@import "components/_components.lead.scss";
+@import "components/_components.pictureslist.scss";
+@import "components/_components.picture.scss";
+@import "components/_components.icon.scss";
+@import "components/_components.meta.scss";
+@import "components/_components.pagination.scss";
 
 @import "layout/_layout.container.scss";
 @import "layout/_layout.grids.scss";
@@ -31,3 +38,4 @@
 @import "objects/_objects.fluidimage.scss";
 
 @import "utilities/_utilities.text.scss";
+@import "utilities/_utilities.spacing.scss";

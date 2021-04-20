@@ -1,0 +1,22 @@
+{% set totalPages = pagination.pages | length %}
+{% set currentPage = pagination.pageNumber + 1 %}
+
+{% if totalPages > 1 %}
+  <nav>
+    <ul class="c-pagination">
+      {% if pagination.href.previous %}
+        <li class="c-pagination__item"><a class="c-pagination__previous" href="{{ pagination.href.previous }}">Previous</a></li>
+      {% endif %}
+      {% if pagination.hrefs[pagination.pageNumber - 1] %}
+        <li class="c-pagination__item"><a class="c-pagination__link" href="{{ pagination.hrefs[pagination.pageNumber - 1] }}">{{ currentPage - 1 }}</a></li>
+      {% endif %}
+      <li class="c-pagination__item"><span class="c-pagination__current">{{ currentPage }}</span></li>
+      {% if pagination.hrefs[pagination.pageNumber + 1] %}
+        <li class="c-pagination__item"><a class="c-pagination__link" href="{{ pagination.hrefs[pagination.pageNumber + 1] }}">{{ currentPage + 1 }}</a></li>
+      {% endif %}
+      {% if pagination.href.next %}
+        <li class="c-pagination__item"><a class="c-pagination__next" href="{{ pagination.href.next }}">Next</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

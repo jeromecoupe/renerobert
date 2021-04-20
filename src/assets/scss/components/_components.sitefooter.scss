@@ -4,10 +4,10 @@
 
 .c-sitefooter {
   background-color: var(--color-gray1);
-  padding-top: 30px;
+  padding-top: 48px;
 
   @include breakpoint(small) {
-    padding-top: 48px;
+    padding-top: 54px;
   }
 
   @include breakpoint(medium) {

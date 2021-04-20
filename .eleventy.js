@@ -13,6 +13,7 @@ module.exports = function (eleventyConfig) {
   // filters
   eleventyConfig.addFilter("date", require("./eleventy/filters/date.js"));
   eleventyConfig.addFilter("include", require("./eleventy/filters/include.js"));
+  eleventyConfig.addFilter("limit", require("./eleventy/filters/limit.js"));
 
   // copy files
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
@@ -24,7 +25,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
   // watch targets
-  eleventyConfig.addWatchTarget("./eleventy/collections/*.js");
+  eleventyConfig.addWatchTarget("./eleventy/**/*.js");
 
   // override default config
   return {
