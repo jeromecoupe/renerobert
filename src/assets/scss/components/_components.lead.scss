@@ -1,0 +1,12 @@
+// ----------------------------------
+// =lead
+// ----------------------------------
+
+.c-lead {
+  font-size: calc(18 / 16 * 1rem);
+  color: var(--color-gray8);
+
+  @include breakpoint(large) {
+    font-size: calc(20 / 16 * 1rem);
+  }
+}

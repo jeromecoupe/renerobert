@@ -3,12 +3,12 @@
 // ----------------------------------
 
 .c-pagesection {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 48px;
+  padding-bottom: 48px;
 
   @include breakpoint(small) {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 54px;
+    padding-bottom: 54px;
   }
 
   @include breakpoint(medium) {

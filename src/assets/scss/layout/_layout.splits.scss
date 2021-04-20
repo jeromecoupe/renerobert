@@ -21,6 +21,13 @@ $split-gap: calc(30 / 16 * 1rem);
   grid-area: b;
 }
 
+.l-split--1fr2fr {
+  @include breakpoint(medium) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "a b";
+  }
+}
+
 .l-split--7fr5fr {
   @include breakpoint(medium) {
     grid-template-columns: 7fr 5fr;

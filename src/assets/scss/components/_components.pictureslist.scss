@@ -1,0 +1,13 @@
+// ----------------------------------
+// =pictures list
+// ----------------------------------
+
+.c-pictureslist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-pictureslist__item:not(:last-child) {
+  margin-bottom: calc(42 / 16 * 1rem);
+}

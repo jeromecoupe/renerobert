@@ -11,19 +11,18 @@
       <div class="c-sitefooter__nav">
         <h2 class="c-footertitle">Navigation</h2>
         <nav id="#footernav" aria-label="Footer navigation">
-          <ul class="c-footernav">
-            <li class="c-footernav__item"><a class="c-footernav__link" href="/">Home</a></li>
-            <li class="c-footernav__item"><a class="c-footernav__link" href="/work/">Work</a></li>
-            <li class="c-footernav__item"><a class="c-footernav__link" href="/about/">About</a></li>
-            <li class="c-footernav__item"><a class="c-footernav__link" href="/hire/">Hire me</a></li>
-          </ul>
+          {% for navItem in nav %}
+            {% if loop.first %}<ul class="c-footernav">{% endif %}
+              <li class="c-footernav__item"><a class="c-footernav__link" href="{{ navItem.url }}">{{ navItem.label }}</a></li>
+            {% if loop.last %}</ul>{% endif %}
+          {% endfor %}
         </nav>
       </div>
 
       <div class="c-sitefooter__hire">
         <h2 class="c-footertitle">Lens for hire</h2>
         <p>Like what you see and need a photographer?</p>
-        <p><a href="/hire">Hire me</a></p>
+        <p><a href="/hire/">Hire me</a></p>
       </div>
 
       <div class="c-sitefooter__copyright">

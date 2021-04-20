@@ -1,0 +1,58 @@
+// ----------------------------------
+// =picture
+// ----------------------------------
+
+.c-picture {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-gray1);
+}
+
+.c-picture__body {
+  padding: calc(30 / 16 * 1rem);
+
+  @include breakpoint(medium) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "title  ."
+      "text   data";
+    column-gap: calc(30 / 16 * 1rem);
+  }
+
+  @include breakpoint(large) {
+    padding: calc(36 / 16 * 1rem);
+  }
+}
+
+.c-picture__title {
+  grid-area: title;
+}
+
+.c-picture__caption {
+  grid-area: text;
+}
+
+.c-picture__data {
+  grid-area: data;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  font-size: 1rem;
+
+  & > li:not(:last-child) {
+    margin-bottom: calc(3 / 16 * 1rem);
+  }
+}
+
+.c-picture__title {
+  font-weight: 600;
+  font-size: calc(24 / 16 * 1rem);
+  line-height: calc(36 / 16 * 1rem);
+  font-family: var(--fontstack-alt);
+  color: var(--color-white);
+  margin-bottom: 0.5em;
+}

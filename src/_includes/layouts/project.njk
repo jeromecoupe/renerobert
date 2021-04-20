@@ -3,40 +3,51 @@
 {% import "macros/dates.njk" as dates %}
 
 {% block content %}
+  {# banner #}
   <div class="c-pagebanner">
-      <img src="/assets/img/projects_covers/{{ bannerImage }}"
-           class="c-pagebanner__image"
-           alt="{{ title }}">
+    <img src="/assets/img/projects_covers/_600x338/{{ bannerImage }}"
+        srcset="/assets/img/projects_covers/_600x338/{{ bannerImage }} 600w,
+                /assets/img/projects_covers/_1024x576/{{ bannerImage }} 1024w,
+                /assets/img/projects_covers/{{ bannerImage }} 1500w"
+        sizes="100vw"
+        class="c-pagebanner__image"
+        alt="{{ title }}">
   </div>
+
+  {# content #}
   <div class="c-pagesection">
     <div class="l-container  l-container--text">
-      <p><p>{{ dates.htmldate(pubDate) }}</p></p>
-      <h1>{{ title }}</h1>
-      <p>Client: {% if clientUrl %}<a href="{{ clientUrl }}">{% endif %}{{ client }}{% if clientUrl %}</a>{% endif %}</p>
-      <div>
+      <p class="c-meta  u-margin-bottom-xs">{{ dates.htmldate(date) }}</p>
+      <h1 class="c-h1  u-margin-bottom-s">{{ title }}</h1>
+      <p class="c-meta  u-margin-bottom-l">Client: {% if clientUrl %}<a href="{{ clientUrl }}">{% endif %}{{ client }}{% if clientUrl %}</a>{% endif %}</p>
+      <div class="c-lead">
         <p>{{ summary }}</p>
       </div>
       {{ content | safe }}
     </div>
   </div>
+
+  {# pictures #}
   <div class="c-pagesection  c-pagesection--highlight">
     <div class="l-container  l-container--narrow">
       {% for picture in pictures %}
-        {% if loop.first %}<ul>{% endif %}
-          <li>
-            <figure>
+        {% if loop.first %}<ul class="c-pictureslist">{% endif %}
+          <li class="c-pictureslist__item">
+
+            <figure class="c-picture">
               <img src="/assets/img/projects/{{ picture.file }}"
                   class="o-fluidimg"
                   alt="{{ picture.title }}">
-              <figcaption>
-                <h2>{{ picture.title }}</h2>
-                <p>{{ picture.caption }}</p>
-                <ul>
-                  <li>{{ picture.location }}</li>
-                  <li>{{ picture.date | date("MMMM, DD YYYY") }}</li>
+              <figcaption class="c-picture__body">
+                <h2 class="c-picture__title">{{ picture.title }}</h2>
+                <p class="c-picture__caption">{{ picture.caption }}</p>
+                <ul class="c-picture__data">
+                  <li>{% include "svg/icon_location.svg" %}{{ picture.location }}</li>
+                  <li>{% include "svg/icon_time.svg" %}{{ picture.date | date("MMMM DD, YYYY") }}</li>
                 </ul>
               </figcaption>
             </figure>
+
           </li>
         {% if loop.last %}</ul>{% endif %}
       {% endfor %}
