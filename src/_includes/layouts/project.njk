@@ -39,9 +39,13 @@
           <li class="c-pictureslist__item">
 
             <figure class="c-picture">
-              <img src="/assets/img/projects/{{ picture.file }}"
-                  class="o-fluidimg"
-                  alt="{{ picture.title }}">
+              <img src="/assets/img/projects/_600xauto/{{ picture.file }}"
+                   srcset="/assets/img/projects/_600xauto/{{ picture.file }} 600w,
+                           /assets/img/projects/{{ picture.file }} 1024w"
+                   sizes="(min-width: 1280px) 1024px,
+                          100vw"
+                   class="o-fluidimg"
+                   alt="{{ picture.title }}">
               <figcaption class="c-picture__body">
                 <h2 class="c-picture__title">{{ picture.title }}</h2>
                 <p class="c-picture__caption">{{ picture.caption }}</p>
