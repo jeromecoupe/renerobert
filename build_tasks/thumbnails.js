@@ -37,8 +37,8 @@ const transforms = [
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_800x800/",
     options: {
-      width: 600,
-      height: 338,
+      width: 800,
+      height: 800,
       fit: "cover",
     },
   },
