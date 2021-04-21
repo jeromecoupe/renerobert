@@ -2,16 +2,16 @@
   <a class="c-projectcard__link" href="{{ project.url }}" aria-label="{{ project.data.title }}">
     <div class="c-projectcard__image">
       <img src="/assets/img/projects_covers/_600x338/{{ project.data.bannerImage }}"
-            srcset="/assets/img/projects_covers/_600x338/{{ project.data.bannerImage }} 600w,
-                    /assets/img/projects_covers/_1024x576/{{ project.data.bannerImage }} 1024w"
-            sizes="(min-width: 1440px) 380px,
-                   (min-width: 1024px) 33vw,
-                   (min-width: 750px) 50vw,
-                   100vw"
-            width="1024"
-            height="576"
-            class="o-fluidimg"
-            alt="">
+           srcset="/assets/img/projects_covers/_600x338/{{ project.data.bannerImage }} 600w,
+                   /assets/img/projects_covers/_1024x576/{{ project.data.bannerImage }} 1024w"
+           sizes="(min-width: 1280px) 380px,
+                  (min-width: 1024px) 33vw,
+                  (min-width: 750px) 50vw,
+                  100vw"
+           width="1024"
+           height="576"
+           class="o-fluidimg"
+           alt="">
     </div>
     <div class="c-projectcard__body">
       <p class="c-projectcard__date  c-meta">{{ dates.htmldate(project.data.date) }}</p>
