@@ -3,7 +3,7 @@ title: "Building the Princess Elisabeth Station"
 date: 2009-02-16
 client: "International Polar Foundation"
 clientUrl: "http://www.polarfoundation.org"
-summary: 'I accompanied the Internatuional Polar Foundation during the construction of the first ever "Zero Emission" research station in Antarctica.'
+summary: 'I accompanied the International Polar Foundation during the construction of the first ever "Zero Emission" research station in Antarctica.'
 bannerImage: princess_elisabeth_construction.jpg
 categories: ["Non-profits", "Expeditions"]
 pictures:
