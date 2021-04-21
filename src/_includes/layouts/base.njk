@@ -4,8 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>René Robert</title>
+  <title>{{ metaTitle }}{% if metaTitle and site.title %} - {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ metaDescription }}">
+
+  <!-- Preload -->
+  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/source-serif-pro-600.woff2">
+  <link rel="preload" as="font" crossorigin type="font/woff2" href="/assets/fonts/source-serif-pro-400.woff2">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ metaTitle }}{% if metaTitle and site.title %} - {% endif %}{{ site.title }}" />
+  <meta property="og:description" content="{{ metaDescription }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url | url }}" />
+  <meta property="og:image" content="{{ metaImage }}" />
+
+  <!-- Apple icon (minimal) -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- defer scripts -->
   <script defer src="/assets/js/bundle.min.js"></script>
 </head>
 <body>

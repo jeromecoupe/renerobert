@@ -2,16 +2,20 @@
 
 {% import "macros/dates.njk" as dates %}
 
+{% set metaTitle = title %}
+{% set metaDescription = summary %}
+{% set metaImage = site.url ~ "/assets/img/projects_covers/_800x800/" ~ bannerImage %}
+
 {% block content %}
   {# banner #}
   <div class="c-pagebanner">
     <img src="/assets/img/projects_covers/_600x338/{{ bannerImage }}"
-        srcset="/assets/img/projects_covers/_600x338/{{ bannerImage }} 600w,
-                /assets/img/projects_covers/_1024x576/{{ bannerImage }} 1024w,
-                /assets/img/projects_covers/{{ bannerImage }} 1500w"
-        sizes="100vw"
-        class="c-pagebanner__image"
-        alt="{{ title }}">
+         srcset="/assets/img/projects_covers/_600x338/{{ bannerImage }} 600w,
+                 /assets/img/projects_covers/_1024x576/{{ bannerImage }} 1024w,
+                 /assets/img/projects_covers/{{ bannerImage }} 1500w"
+         sizes="100vw"
+         class="c-pagebanner__image"
+         alt="{{ title }}">
   </div>
 
   {# content #}

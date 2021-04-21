@@ -11,6 +11,10 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
 
 {% import "macros/dates.njk" as dates %}
 
+{% set metaTitle = "Pictures and projects" %}
+{% set metaDescription = "A selection of pictures and projects" %}
+{% set metaImage = site.metaImage %}
+
 {% set currentSection = "work" %}
 
 {% block pagecontent %}

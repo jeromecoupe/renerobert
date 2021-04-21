@@ -16,7 +16,7 @@ const transforms = [
     },
   },
   {
-    src: "./src/assets/img/pojects_covers/*",
+    src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_1024x576/",
     options: {
       width: 1024,
@@ -27,6 +27,15 @@ const transforms = [
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_600x338/",
+    options: {
+      width: 600,
+      height: 338,
+      fit: "cover",
+    },
+  },
+  {
+    src: "./src/assets/img/projects_covers/*",
+    dist: "./dist/assets/img/projects_covers/_800x800/",
     options: {
       width: 600,
       height: 338,
@@ -86,6 +95,11 @@ const init = () => {
 
     // glob files and make thumbnails
     let filepaths = glob.sync(transform.src);
+    if (filepaths.length === 0) {
+      throw new Error(
+        `THUMBNAILS TASK: ${transform.src} folder didn't return any file`
+      );
+    }
     makeThumbnails(filepaths, transform);
   });
 };
