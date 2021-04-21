@@ -1,14 +1,21 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-        <div class="c-pagebanner">
-        <img src="/assets/img/banners//_600x338/{{ bannerImage }}"
-        srcset="/assets/img/banners//_600x338/{{ bannerImage }} 600w,
-                /assets/img/banners/{{ bannerImage }} 1024w"
-        sizes="100vw"
-        class="c-pagebanner__image"
-        alt="René Robert in Antarctica">
-        </div>
-        {% block pagecontent %}
-        {% endblock %}
+	<div class="c-pagebanner">
+		<img src="/assets/img/banners//_600x338/{{ bannerImage }}"
+		     srcset="/assets/img/banners//_600x338/{{ bannerImage }} 600w,
+		     				 /assets/img/banners/{{ bannerImage }} 1024w"
+		     sizes="100vw"
+		     class="c-pagebanner__image"
+		     alt="René Robert in Antarctica">
+		{% if currentSection == "home" %}
+			<div class="c-pagebanner__text">
+				<h1 class="c-pagebanner__title">Outdoor Photographer</h1>
+				<p class="c-pagebanner__subtitle">Press - Mountaineering - Expeditions - Branding</p>
+			</div>
+		{% endif %}
+	</div>
+
+	{% block pagecontent %}{% endblock %}
+
 {% endblock %}

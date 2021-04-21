@@ -4,7 +4,7 @@
 
 .c-pagination {
   list-style: none;
-  margin: 0;
+  margin: calc(30 / 16 * 1rem) 0 0;
   padding: 0;
 
   display: flex;

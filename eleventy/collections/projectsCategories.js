@@ -21,7 +21,7 @@ const strToSlug = (str) => {
  * @returns {Array} Array of category objects
  */
 module.exports = (collection) => {
-  const projects = collection.getFilteredByGlob("./src/projects/*.md");
+  const projects = collection.getFilteredByGlob("./src/content/projects/*.md");
   const allCategories = projects
     .flatMap((item) => item.data.categories)
     .filter((e) => e)

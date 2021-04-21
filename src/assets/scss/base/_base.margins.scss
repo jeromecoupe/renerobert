@@ -20,6 +20,6 @@ ul,
 ol,
 dl,
 address {
-  margin-top: 0;
-  margin-bottom: pxtorem(24px);
+  margin: 0;
+  margin-bottom: calc(24 / 16 * 1rem);
 }

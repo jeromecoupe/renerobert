@@ -10,6 +10,14 @@
   }
 }
 
+.u-text-small {
+  font-size: calc(14 / 16 * 1rem) !important;
+
+  @include breakpoint(xlarge) {
+    font-size: calc(16 / 16 * 1rem) !important;
+  }
+}
+
 // ----------------------------------
 // =color utilities
 // ----------------------------------
