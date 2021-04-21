@@ -13,7 +13,7 @@ bannerImage: banner_home.jpg
   <div class="c-pagesection">
     <div class="l-container">
 
-      <h1 class="c-h1">René Robert</h1>
+      <h2 class="c-h1">René Robert</h2>
       <div class="l-split  l-split--7fr5fr">
         <div class="l-split__primary">
           <div class="u-text-medium  u-text-gray8">
@@ -36,7 +36,7 @@ bannerImage: banner_home.jpg
   </div>
   <div class="c-pagesection  c-pagesection--highlight">
     <div class="l-container">
-      {% set allProjects = collections.projects %}
+      {% set allProjects = collections.projects | limit(6) %}
       {% for project in allProjects %}
         {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
           <li>

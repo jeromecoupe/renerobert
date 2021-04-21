@@ -1,0 +1,25 @@
+// ----------------------------------
+// =rates
+// ----------------------------------
+.c-rates {
+  margin: 0;
+  margin-bottom: calc(24 / 16 * 1rem);
+}
+
+.c-rates__title {
+  font-size: calc(14 / 16 * 1rem);
+  color: var(--color-gray4);
+  text-transform: uppercase;
+}
+
+.c-rates__data {
+  margin-left: 0;
+}
+
+.c-rates__price {
+  color: var(--color-gray8);
+}
+
+.c-rates__data + .c-rates__title {
+  margin-top: 1rem;
+}

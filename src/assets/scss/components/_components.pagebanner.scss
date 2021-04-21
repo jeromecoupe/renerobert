@@ -3,6 +3,7 @@
 // ----------------------------------
 
 .c-pagebanner {
+  position: relative;
   height: 300px;
 
   @include breakpoint(small) {
@@ -26,4 +27,56 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.c-pagebanner__text {
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: calc(60 / 16 * 1rem);
+  padding-left: calc(60 / 16 * 1rem);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10;
+
+  text-align: center;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.54);
+}
+
+.c-pagebanner__title {
+  margin-bottom: calc(12 / 16 * 1rem);
+  font-weight: 600;
+  font-size: calc(33 / 16 * 1rem);
+  line-height: calc(36 / 33);
+  font-family: var(--fontstack-alt);
+  color: var(--color-white);
+
+  @include breakpoint(medium) {
+    margin-bottom: calc(18 / 16 * 1rem);
+    font-weight: 400;
+    font-size: calc(40 / 16 * 1rem);
+    line-height: calc(48 / 33);
+  }
+
+  @include breakpoint(large) {
+    font-size: calc(57 / 16 * 1rem);
+    line-height: calc(60 / 57);
+  }
+
+  @include breakpoint(xlarge) {
+    font-size: calc(69 / 16 * 1rem);
+    line-height: calc(72 / 69);
+  }
+}
+
+.c-pagebanner__subtitle {
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: calc(14 / 16 * 1rem);
+  line-height: calc(18 / 14);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

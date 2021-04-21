@@ -1,10 +1,10 @@
 ---
 bannerImage: banner_work.jpg
 pagination:
-  size: 12
-  data: collections.projects
-  alias: projects
-permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html
+  size: 1
+  data: collections.projectsCategories
+  alias: currentCategory
+permalink: work/{{ currentCategory.slug }}/index.html
 ---
 
 {% extends "layouts/page.njk" %}
@@ -19,7 +19,7 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
 
       <div class="l-split  l-split--1fr2fr">
         <div class="l-split__primary">
-          <h1 class="c-h1">My work</h1>
+          <h1 class="c-h1">Portfolio</h1>
         </div>
         <div class="l-split__secondary">
           {# categories #}
@@ -40,10 +40,8 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
 
   <div class="c-pagesection  c-pagesection--highlight">
     <div class="l-container">
-
-      {# projects #}
-      {% set allProjects = projects %}
-      {% for project in allProjects %}
+      {% set catProjects = collections.projects | include("data.categories", currentCategory.title) %}
+      {% for project in catProjects %}
         {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
             <li>
 
@@ -52,9 +50,6 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
             </li>
           {% if loop.last %}</ul>{% endif %}
       {% endfor %}
-
-      {% include "components/pagination.njk" %}
-
     </div>
   </div>
 {% endblock %}
