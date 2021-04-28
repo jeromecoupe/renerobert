@@ -24,9 +24,6 @@ module.exports = function (eleventyConfig) {
   // deep merge
   eleventyConfig.setDataDeepMerge(true);
 
-  // watch targets
-  eleventyConfig.addWatchTarget("./eleventy/**/*.js");
-
   // override default config
   return {
     dir: {

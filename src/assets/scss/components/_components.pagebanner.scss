@@ -42,7 +42,7 @@
   z-index: 10;
 
   text-align: center;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.54);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.54), 0 0 24px rgba(0, 0, 0, 0.54);
 }
 
 .c-pagebanner__title {
@@ -73,7 +73,7 @@
 
 .c-pagebanner__subtitle {
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 400;
   font-size: calc(14 / 16 * 1rem);
   line-height: calc(18 / 14);
   color: var(--color-white);
