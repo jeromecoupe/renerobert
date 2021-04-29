@@ -8,47 +8,70 @@ const sharp = require("sharp");
 const transforms = [
   {
     src: "./src/assets/img/banners/*",
+    dist: "./dist/assets/img/banners/",
+    resize: null,
+    formats: ["jpg", "webp"],
+  },
+  {
+    src: "./src/assets/img/banners/*",
     dist: "./dist/assets/img/banners/_600x338/",
-    options: {
+    resize: {
       width: 600,
       height: 338,
       fit: "cover",
     },
+    formats: ["jpg", "webp"],
+  },
+  {
+    src: "./src/assets/img/projects_covers/*",
+    dist: "./dist/assets/img/projects_covers/",
+    resize: null,
+    formats: ["jpg", "webp"],
   },
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_1024x576/",
-    options: {
+    resize: {
       width: 1024,
       height: 576,
       fit: "cover",
     },
+    formats: ["jpg", "webp"],
   },
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_600x338/",
-    options: {
+    resize: {
       width: 600,
       height: 338,
       fit: "cover",
     },
+    formats: ["jpg", "webp"],
   },
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_800x800/",
-    options: {
+    resize: {
       width: 800,
       height: 800,
       fit: "cover",
     },
+    formats: ["jpg", "webp"],
+  },
+  {
+    src: "./src/assets/img/projects/*",
+    dist: "./dist/assets/img/projects/",
+    resize: null,
+    formats: ["jpg", "webp"],
   },
   {
     src: "./src/assets/img/projects/*",
     dist: "./dist/assets/img/projects/_600xauto/",
-    options: {
+    resize: {
       width: 600,
       fit: "cover",
     },
+    formats: ["jpg", "webp"],
   },
 ];
 
@@ -68,17 +91,21 @@ const checkFolderExists = (path) => {
  * Walk array of filepaths to make
  * thumbnails and write them to disk
  * @param {array} filepaths - array of filepaths
- * @param {object} transform - Sharp options and location of dist folder
+ * @param {object} transform - Sharp parameters and dist folder
  */
-const makeThumbnails = (filepaths, transform) => {
-  filepaths.forEach((file) => {
-    let filename = path.basename(file);
-    sharp(file)
-      .resize(transform.options)
-      .toFile(`${transform.dist}/${filename}`)
-      .catch((err) => {
-        console.log(err);
-      });
+const makeThumbnails = async (filepaths, transform) => {
+  filepaths.map(async (file) => {
+    let filename = path.parse(file).name;
+    let distpath = `${transform.dist}/${filename}`;
+    let formats = transform.formats;
+    return Promise.all(
+      formats.map(async (format) => {
+        return await sharp(file)
+          .resize(transform.resize)
+          .toFormat(format)
+          .toFile(`${distpath}.${format}`);
+      })
+    );
   });
 };
 
@@ -88,8 +115,8 @@ const makeThumbnails = (filepaths, transform) => {
  * - get src and glob filepaths
  * - pass filepaths and transform object
  */
-const init = () => {
-  transforms.forEach((transform) => {
+const init = async () => {
+  transforms.forEach(async (transform) => {
     // check dist folder exists
     checkFolderExists(transform.dist);
 
