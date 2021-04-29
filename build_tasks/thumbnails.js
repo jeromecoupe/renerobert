@@ -93,9 +93,9 @@ const checkFolderExists = (path) => {
  * @param {array} filepaths - array of filepaths
  * @param {object} transform - Sharp parameters and dist folder
  */
-const makeThumbnails = async (filepaths, transform) => {
+const makeThumbnails = (filepaths, transform) => {
   //Returns an array of promises
-  return filepaths.map(async (file) => {
+  return Promise.all(filepaths.map((file) => {
     let filename = path.parse(file).name;
     let distpath = `${transform.dist}/${filename}`;
     let formats = transform.formats;
@@ -106,7 +106,7 @@ const makeThumbnails = async (filepaths, transform) => {
           .toFile(`${distpath}.${format}`);
       )
     );
-  });
+  }));
 };
 
 /**
