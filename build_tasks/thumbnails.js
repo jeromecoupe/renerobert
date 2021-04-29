@@ -94,17 +94,17 @@ const checkFolderExists = (path) => {
  * @param {object} transform - Sharp parameters and dist folder
  */
 const makeThumbnails = async (filepaths, transform) => {
-  filepaths.map(async (file) => {
+  //Returns an array of promises
+  return filepaths.map(async (file) => {
     let filename = path.parse(file).name;
     let distpath = `${transform.dist}/${filename}`;
     let formats = transform.formats;
     return Promise.all(
-      formats.map(async (format) => {
-        return await sharp(file)
+      formats.map((format) => sharp(file)
           .resize(transform.resize)
           .toFormat(format)
           .toFile(`${distpath}.${format}`);
-      })
+      )
     );
   });
 };
@@ -116,7 +116,7 @@ const makeThumbnails = async (filepaths, transform) => {
  * - pass filepaths and transform object
  */
 const init = async () => {
-  transforms.forEach(async (transform) => {
+  await Promise.all(transforms.map((transform) => {
     // check dist folder exists
     checkFolderExists(transform.dist);
 
@@ -127,8 +127,9 @@ const init = async () => {
         `THUMBNAILS TASK: ${transform.src} folder didn't return any file`
       );
     }
-    makeThumbnails(filepaths, transform);
-  });
+    return makeThumbnails(filepaths, transform);
+  }));
+  console.log('Job done');
 };
 
 // Initialise
