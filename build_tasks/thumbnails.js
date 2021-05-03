@@ -97,7 +97,7 @@ const init = () => {
     let filepaths = glob.sync(transform.src);
     if (filepaths.length === 0) {
       throw new Error(
-        `THUMBNAILS TASK: ${transform.src} folder didn't return any file`
+        `Thumbnails task error: ${transform.src} folder didn't return any file`
       );
     }
     makeThumbnails(filepaths, transform);
