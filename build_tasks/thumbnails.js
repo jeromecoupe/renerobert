@@ -9,6 +9,7 @@ const transforms = [
   {
     src: "./src/assets/img/banners/*",
     dist: "./dist/assets/img/banners/_600x338/",
+    formats: ["jpg", "webp"],
     options: {
       width: 600,
       height: 338,
@@ -16,8 +17,29 @@ const transforms = [
     },
   },
   {
+    src: "./src/assets/img/banners/*",
+    dist: "./dist/assets/img/banners/",
+    formats: ["jpg", "webp"],
+    options: {
+      width: 1024,
+      height: 768,
+      fit: "cover",
+    },
+  },
+  {
+    src: "./src/assets/img/projects_covers/*",
+    dist: "./dist/assets/img/projects_covers/",
+    formats: ["jpg", "webp"],
+    options: {
+      width: 1500,
+      height: 844,
+      fit: "cover",
+    },
+  },
+  {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_1024x576/",
+    formats: ["jpg", "webp"],
     options: {
       width: 1024,
       height: 576,
@@ -27,6 +49,7 @@ const transforms = [
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_600x338/",
+    formats: ["jpg", "webp"],
     options: {
       width: 600,
       height: 338,
@@ -36,6 +59,7 @@ const transforms = [
   {
     src: "./src/assets/img/projects_covers/*",
     dist: "./dist/assets/img/projects_covers/_800x800/",
+    formats: ["jpg", "webp"],
     options: {
       width: 800,
       height: 800,
@@ -44,7 +68,17 @@ const transforms = [
   },
   {
     src: "./src/assets/img/projects/*",
+    dist: "./dist/assets/img/projects/",
+    formats: ["jpg", "webp"],
+    options: {
+      width: 1024,
+      fit: "cover",
+    },
+  },
+  {
+    src: "./src/assets/img/projects/*",
     dist: "./dist/assets/img/projects/_600xauto/",
+    formats: ["jpg", "webp"],
     options: {
       width: 600,
       fit: "cover",
@@ -72,13 +106,20 @@ const checkFolderExists = (path) => {
  */
 const makeThumbnails = (filepaths, transform) => {
   filepaths.forEach((file) => {
-    let filename = path.basename(file);
-    sharp(file)
-      .resize(transform.options)
-      .toFile(`${transform.dist}/${filename}`)
-      .catch((err) => {
-        console.log(err);
-      });
+    let distFileName = path.parse(file).name;
+    let distFilePath = path.normalize(`${transform.dist}/${distFileName}`);
+    let formats = transform.formats ?? ["jpg"];
+    formats.forEach((format) => {
+      if (!fs.existsSync(`${distFilePath}.${format}`)) {
+        sharp(file)
+          .resize(transform.options)
+          .toFormat(format)
+          .toFile(`${distFilePath}.${format}`)
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   });
 };
 
