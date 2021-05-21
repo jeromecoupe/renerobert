@@ -4,15 +4,18 @@
 
 {% set metaTitle = title %}
 {% set metaDescription = summary %}
-{% set metaImage = site.url ~ "/assets/img/projects_covers/_800x800/" ~ bannerImage %}
+
+{% set img = "./src/assets/img/projects_covers/" ~ bannerImage %}
+{% set metaImage = site.url ~ img | transform({ width: 600, height: 600 }) %}
 
 {% block content %}
   {# banner #}
   <div class="c-pagebanner">
-    <img src="/assets/img/projects_covers/_600x338/{{ bannerImage }}"
-         srcset="/assets/img/projects_covers/_600x338/{{ bannerImage }} 600w,
-                 /assets/img/projects_covers/_1024x576/{{ bannerImage }} 1024w,
-                 /assets/img/projects_covers/{{ bannerImage }} 1500w"
+    {% set banner = "./src/assets/img/projects_covers/" ~ bannerImage %}
+    <img src="{{ banner | transform({ width: 600, height: 338 }) }}"
+         srcset="{{ banner | transform({ width: 600, height: 338 }) }} 600w,
+                 {{ banner | transform({ width: 1024, height: 576 }) }} 1024w,
+                 {{ banner | transform({ width: 1500, height: 844 }) }} 1500w"
          sizes="100vw"
          class="c-pagebanner__image"
          alt="{{ title }}">
@@ -39,9 +42,10 @@
           <li class="c-pictureslist__item">
 
             <figure class="c-picture">
-              <img src="/assets/img/projects/_600xauto/{{ picture.file }}"
-                   srcset="/assets/img/projects/_600xauto/{{ picture.file }} 600w,
-                           /assets/img/projects/{{ picture.file }} 1024w"
+              {% set img = "./src/assets/img/projects/" ~ picture.file %}
+              <img src="{{ img | transform({ width: 600 }) }}"
+                   srcset="{{ img | transform({ width: 600 }) }} 600w,
+                           {{ img | transform({ width: 1024 }) }} 1024w"
                    sizes="(min-width: 1280px) 1024px,
                           100vw"
                    class="o-fluidimg"

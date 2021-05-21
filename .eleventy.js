@@ -14,12 +14,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("date", require("./eleventy/filters/date.js"));
   eleventyConfig.addFilter("include", require("./eleventy/filters/include.js"));
   eleventyConfig.addFilter("limit", require("./eleventy/filters/limit.js"));
+  eleventyConfig.addFilter(
+    "transform",
+    require("./eleventy/filters/transform-images.js")
+  );
 
   // copy files
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
   eleventyConfig.addPassthroughCopy("./src/apple-touch-icon.png");
-  eleventyConfig.addPassthroughCopy("./src/assets/img");
-  eleventyConfig.addPassthroughCopy("./src/assets/fonts");
+  eleventyConfig.addPassthroughCopy({ "./src/assets/img/*": "assets/img" });
 
   // deep merge
   eleventyConfig.setDataDeepMerge(true);
