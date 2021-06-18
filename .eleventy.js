@@ -1,23 +1,15 @@
 module.exports = function (eleventyConfig) {
   // projects
-  eleventyConfig.addCollection(
-    "projects",
-    require("./eleventy/collections/projects.js")
-  );
+  eleventyConfig.addCollection("projects", require("./src/_11ty/collections/projects.js"));
+
   // projects categories
-  eleventyConfig.addCollection(
-    "projectsCategories",
-    require("./eleventy/collections/projectsCategories.js")
-  );
+  eleventyConfig.addCollection("projectsCategories", require("./src/_11ty/collections/projectsCategories.js"));
 
   // filters
-  eleventyConfig.addFilter("date", require("./eleventy/filters/date.js"));
-  eleventyConfig.addFilter("include", require("./eleventy/filters/include.js"));
-  eleventyConfig.addFilter("limit", require("./eleventy/filters/limit.js"));
-  eleventyConfig.addFilter(
-    "transform",
-    require("./eleventy/filters/transform-images.js")
-  );
+  eleventyConfig.addFilter("date", require("./src/_11ty/filters/date.js"));
+  eleventyConfig.addFilter("include", require("./src/_11ty/filters/include.js"));
+  eleventyConfig.addFilter("limit", require("./src/_11ty/filters/limit.js"));
+  eleventyConfig.addFilter("transform", require("./src/_11ty/filters/transform-images.js"));
 
   // copy files
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
