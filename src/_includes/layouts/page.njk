@@ -3,10 +3,11 @@
 {% block content %}
 	<div class="c-pagebanner">
 		<picture>
-			{% set img = "./src/assets/img/banners/" ~ bannerImage %}
-			<img src="{{ img | transform({ width: 600, height: 338 }) }}"
-		     srcset="{{ img | transform({ width: 600, height: 338 }) }} 600w,
-		     				 {{ img | transform({ width: 1024, height: 576 }) }} 1024w"
+			{% set banner600 = '/assets/img/banners/600x338/' ~ bannerImage %}
+      {% set banner1024 = '/assets/img/banners/' ~ bannerImage %}
+			<img src="{{ banner600 }}"
+		     srcset="{{ banner600 }} 600w,
+		     				 {{ banner1024 }} 1024w"
 		     sizes="100vw"
 		     class="c-pagebanner__image"
 		     alt="René Robert in Antarctica">
