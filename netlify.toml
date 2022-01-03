@@ -7,3 +7,6 @@
 
   # Functions directory to deploy to AWS
   # functions = "functions/"
+
+  # node version
+  environment = { NODE_VERSION = "16.4.1" }
