@@ -4,18 +4,18 @@
 
 {% set metaTitle = title %}
 {% set metaDescription = summary %}
-
-{% set img = "./src/assets/img/projects_covers/" ~ bannerImage %}
-{% set metaImage = site.url ~ img | transform({ width: 600, height: 600 }) %}
+{% set metaImage = "/assets/img/projects_covers/600x600" ~ bannerImage %}
 
 {% block content %}
   {# banner #}
   <div class="c-pagebanner">
-    {% set banner = "./src/assets/img/projects_covers/" ~ bannerImage %}
-    <img src="{{ banner | transform({ width: 600, height: 338 }) }}"
-         srcset="{{ banner | transform({ width: 600, height: 338 }) }} 600w,
-                 {{ banner | transform({ width: 1024, height: 576 }) }} 1024w,
-                 {{ banner | transform({ width: 1500, height: 844 }) }} 1500w"
+    {% set banner600 = "/assets/img/projects_covers/600x338/" ~ bannerImage %}
+    {% set banner1024 = "/assets/img/projects_covers/1024x576/" ~ bannerImage %}
+    {% set banner1500 = "/assets/img/projects_covers/" ~ bannerImage %}
+    <img src="{{ banner600 }}"
+         srcset="{{ banner600 }} 600w,
+                 {{ banner1024 }} 1024w,
+                 {{ banner1500 }} 1500w"
          sizes="100vw"
          class="c-pagebanner__image"
          alt="{{ title }}">
@@ -42,14 +42,16 @@
           <li class="c-pictureslist__item">
 
             <figure class="c-picture">
-              {% set img = "./src/assets/img/projects/" ~ picture.file %}
-              <img src="{{ img | transform({ width: 600 }) }}"
-                   srcset="{{ img | transform({ width: 600 }) }} 600w,
-                           {{ img | transform({ width: 1024 }) }} 1024w"
+              {% set img600 = "/assets/img/projects/600xauto/" ~ picture.file %}
+              {% set img1024 = "/assets/img/projects/" ~ picture.file %}
+              <img src="{{ img600 }}"
+                   srcset="{{ img600 }} 600w,
+                           {{ img1024 }} 1024w"
                    sizes="(min-width: 1280px) 1024px,
                           100vw"
                    class="o-fluidimg"
                    loading="lazy"
+                   decoding="async"
                    alt="{{ picture.title }}">
               <figcaption class="c-picture__body">
                 <h2 class="c-picture__title">{{ picture.title }}</h2>

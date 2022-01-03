@@ -1,10 +1,11 @@
 <article class="c-projectcard">
   <a class="c-projectcard__link" href="{{ project.url }}" aria-label="{{ project.data.title }}">
     <div class="c-projectcard__image">
-      {% set cardimage = "./src/assets/img/projects_covers/" ~ project.data.bannerImage %}
-      <img src="{{ cardimage | transform({ width: 600, height: 338 }) }}"
-           srcset="{{ cardimage | transform({ width: 600, height: 338 }) }} 600w,
-                   {{ cardimage | transform({ width: 1024, height: 576 }) }} 1024w"
+      {% set cardimage600 = "/assets/img/projects_covers/600x338/" ~ project.data.bannerImage %}
+      {% set cardimage1024 = "/assets/img/projects_covers/" ~ project.data.bannerImage %}
+      <img src="{{ cardimage600 }}"
+           srcset="{{ cardimage600 }} 600w,
+                   {{ cardimage1024 }} 1024w"
            sizes="(min-width: 1280px) 380px,
                   (min-width: 1024px) 33vw,
                   (min-width: 750px) 50vw,
@@ -12,6 +13,7 @@
            width="1024"
            height="576"
            loading="lazy"
+           decoding="async"
            class="o-fluidimg"
            alt="">
     </div>
