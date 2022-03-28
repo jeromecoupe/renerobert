@@ -20,8 +20,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("limit", require("./src/_11ty/filters/limit.js"));
 
   // copy files
-  eleventyConfig.addPassthroughCopy("./src/favicon.ico");
-  eleventyConfig.addPassthroughCopy("./src/apple-touch-icon.png");
+  eleventyConfig.addPassthroughCopy({"./src/static":"./"});
   eleventyConfig.addPassthroughCopy("./src/assets/img");
   eleventyConfig.addPassthroughCopy("./src/assets/fonts");
 
@@ -31,8 +30,8 @@ module.exports = function (eleventyConfig) {
   // override default config
   return {
     dir: {
-      input: "./src/",
-      output: "./dist/",
+      input: "./src",
+      output: "./dist",
     },
   };
 };
