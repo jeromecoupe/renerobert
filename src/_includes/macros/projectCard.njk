@@ -1,0 +1,28 @@
+{% macro projectCard(url, title, image, date, summary) %}
+  <article class="c-projectcard">
+    <a class="c-projectcard__link" href="{{ url }}" aria-label="{{ title }}">
+      <div class="c-projectcard__image">
+        {% set cardimage600 = "/assets/img/projects_covers/600x338/" ~ image %}
+        {% set cardimage1024 = "/assets/img/projects_covers/" ~ image %}
+        <img src="{{ cardimage600 }}"
+            srcset="{{ cardimage600 }} 600w,
+                    {{ cardimage1024 }} 1024w"
+            sizes="(min-width: 1280px) 380px,
+                    (min-width: 1024px) 33vw,
+                    (min-width: 750px) 50vw,
+                    100vw"
+            width="1024"
+            height="576"
+            loading="lazy"
+            decoding="async"
+            class="o-fluidimg"
+            alt="">
+      </div>
+      <div class="c-projectcard__body">
+        <p class="c-projectcard__date  c-meta"><time datetime="{{- date|dateISO -}}">{{- date|dateFull -}}</time></p>
+        <h2 class="c-projectcard__title">{{ title }}</h2>
+        <p class="c-projectcard__summary">{{ summary }}</p>
+      </div>
+    </a>
+  </article>
+{% endmacro %}

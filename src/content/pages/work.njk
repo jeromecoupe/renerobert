@@ -9,7 +9,7 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
 
 {% extends "layouts/page.njk" %}
 
-{% import "macros/dates.njk" as dates %}
+{% from "macros/projectCard.njk" import projectCard %}
 
 {% set metaTitle = "Pictures and projects" %}
 {% set metaDescription = "A selection of pictures and projects" %}
@@ -47,11 +47,17 @@ permalink: work/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }
 
       {# projects #}
       {% set allProjects = projects %}
-      {% for project in allProjects %}
+      {% for item in allProjects %}
         {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
             <li>
 
-              {% include "components/projectcard.njk" %}
+              {{ projectCard(
+                url = item.url,
+                title = item.data.title,
+                image = item.data.bannerImage,
+                date = item.date,
+                summary = item.data.summary
+              ) }}
 
             </li>
           {% if loop.last %}</ul>{% endif %}
