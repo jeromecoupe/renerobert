@@ -1,7 +1,5 @@
 {% extends "layouts/base.njk" %}
 
-{% import "macros/dates.njk" as dates %}
-
 {% set metaTitle = title %}
 {% set metaDescription = summary %}
 {% set metaImage = "/assets/img/projects_covers/600x600" ~ bannerImage %}
@@ -24,7 +22,7 @@
   {# content #}
   <div class="c-pagesection">
     <div class="l-container  l-container--text">
-      <p class="c-meta  u-margin-bottom-xs">{{ dates.htmldate(date) }}</p>
+      <p class="c-meta  u-margin-bottom-xs"><time datetime="{{- date|dateISO -}}">{{- date|dateFull -}}</time></p>
       <h1 class="c-h1  u-margin-bottom-s">{{ title }}</h1>
       <p class="c-meta  u-margin-bottom-l">Client: {% if clientUrl %}<a href="{{ clientUrl }}">{% endif %}{{ client }}{% if clientUrl %}</a>{% endif %}</p>
       <div class="c-lead">
@@ -58,7 +56,7 @@
                 <p class="c-picture__caption">{{ picture.caption }}</p>
                 <ul class="c-picture__data">
                   <li>{% include "svg/icon_location.svg" %}{{ picture.location }}</li>
-                  <li>{% include "svg/icon_time.svg" %}{{ picture.date | date("MMMM DD, YYYY") }}</li>
+                  <li>{% include "svg/icon_time.svg" %}{{ picture.date | dateFull }}</li>
                 </ul>
               </figcaption>
             </figure>

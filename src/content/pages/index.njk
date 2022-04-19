@@ -5,7 +5,7 @@ bannerImage: banner_home.jpg
 
 {% extends "layouts/page.njk" %}
 
-{% import "macros/dates.njk" as dates %}
+{% from "macros/projectCard.njk" import projectCard %}
 
 {% set metaTitle = "Homepage" %}
 {% set metaDescription = "I am an outdoor photographer with more than 20 years of experience living in Chamonix Mont-Blanc, France." %}
@@ -41,11 +41,17 @@ bannerImage: banner_home.jpg
   <div class="c-pagesection  c-pagesection--highlight">
     <div class="l-container">
       {% set allProjects = collections.projects | limit(6) %}
-      {% for project in allProjects %}
+      {% for item in allProjects %}
         {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
           <li>
 
-            {% include "components/projectcard.njk" %}
+            {{ projectCard(
+              url = item.url,
+              title = item.data.title,
+              image = item.data.bannerImage,
+              date = item.date,
+              summary = item.data.summary
+            ) }}
 
           </li>
         {% if loop.last %}</ul>{% endif %}

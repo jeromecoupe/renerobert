@@ -9,7 +9,7 @@ permalink: work/{{ currentCategory.slug }}/index.html
 
 {% extends "layouts/page.njk" %}
 
-{% import "macros/dates.njk" as dates %}
+{% from "macros/projectCard.njk" import projectCard %}
 
 {% set metaTitle = "Pictures and projects - " ~ currentCategory.title %}
 {% set metaDescription = "A selection of pictures and projects" %}
@@ -45,11 +45,17 @@ permalink: work/{{ currentCategory.slug }}/index.html
   <div class="c-pagesection  c-pagesection--highlight">
     <div class="l-container">
       {% set catProjects = collections.projects | include("data.categories", currentCategory.title) %}
-      {% for project in catProjects %}
+      {% for item in catProjects %}
         {% if loop.first %}<ul class="l-grid  l-grid--2cols@medium  l-grid--3cols@large">{% endif %}
             <li>
 
-              {% include "components/projectcard.njk" %}
+              {{ projectCard(
+                url = item.url,
+                title = item.data.title,
+                image = item.data.bannerImage,
+                date = item.date,
+                summary = item.data.summary
+              ) }}
 
             </li>
           {% if loop.last %}</ul>{% endif %}
