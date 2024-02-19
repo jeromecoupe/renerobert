@@ -1,11 +1,12 @@
 const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
-const glob = require("glob");
+const { globSync } = require("glob");
+
 const transforms = [
   {
     // 600x338 thumbnails for banners
-    src: "./src/assets/img/banners/*",
+    src: "./src/assets/img/banners/",
     dist: "./dist/assets/img/banners/600x338/",
     formats: ["jpg"],
     options: {
@@ -16,7 +17,7 @@ const transforms = [
   },
   {
     // 600x338 thumbnails for project covers
-    src: "./src/assets/img/projects_covers/*",
+    src: "./src/assets/img/projects_covers/",
     dist: "./dist/assets/img/projects_covers/600x338/",
     formats: ["jpg"],
     options: {
@@ -27,7 +28,7 @@ const transforms = [
   },
   {
     // 1024x576 thumbnails for project covers
-    src: "./src/assets/img/projects_covers/*",
+    src: "./src/assets/img/projects_covers/",
     dist: "./dist/assets/img/projects_covers/1024x576/",
     formats: ["jpg"],
     options: {
@@ -38,7 +39,7 @@ const transforms = [
   },
   {
     // 600x600 thumbnails for project covers
-    src: "./src/assets/img/projects_covers/*",
+    src: "./src/assets/img/projects_covers/",
     dist: "./dist/assets/img/projects_covers/600x600/",
     formats: ["jpg"],
     options: {
@@ -49,7 +50,7 @@ const transforms = [
   },
   {
     // 600xauto thumbnails for projects
-    src: "./src/assets/img/projects/*",
+    src: "./src/assets/img/projects/",
     dist: "./dist/assets/img/projects/600xauto/",
     formats: ["jpg"],
     options: {
@@ -60,83 +61,98 @@ const transforms = [
   },
 ];
 
-/**
- * Check supplied format is allowed
- * @param {string} format
- */
-function checkFormats(format) {
-  const allowedFormats = ["jpg", "jpeg", "png", "webp", "avif"];
+// config
+const config = {
+  allowedFormats: ["jpg", "jpeg", "webp", "avif", "png", "gif"],
+};
 
-  if (!allowedFormats.includes(format)) {
-    throw new Error(`${format} is not an allowed format: ${allowedFormats}`);
+/**
+ * Create Directory recursively from path
+ */
+function createDir(path) {
+  // return if dir already exists
+  if (fs.existsSync(path)) return;
+  // create dir
+  try {
+    fs.mkdirSync(path, { recursive: true });
+  } catch (err) {
+    throw new Error(err);
   }
 }
 
 /**
- * Create Directory recursively if not readable
- * @param {string} path - valid dir path
+ * Generate images based on transforms object
  */
-function createDir(path) {
-  if (fs.existsSync(path)) return;
+async function init() {
+  // array for promises
+  let sharpPromises = [];
 
-  fs.mkdirSync(path, { recursive: true }, (err) => {
-    if (err) throw err;
-  });
-}
+  // loop through transforms
+  transforms.forEach(async (transform) => {
+    let inputDir = transform.src;
+    let outputDir = transform.dist;
+    let formats = transform.formats;
+    let options = transform.options;
 
-/**
- * Resize Image
- * @param {string} scrPath - path of src image
- * @param {string} distPath - path of dist image
- * @param {format} format - format of dist image
- * @param {object} resizeOptions - Sharp resize options
- */
-function resizeImage(scrPath, distPath, format, resizeOptions) {
-  if (fs.existsSync(distPath)) return;
-  resizeOptions.width ? parseInt(resizeOptions.width, 10) : null;
-  resizeOptions.height ? parseInt(resizeOptions.height, 10) : null;
+    // check formats is array
+    if (!Array.isArray(formats)) {
+      throw new Error(`"formats" in transforms should be an array`);
+    }
 
-  sharp(scrPath)
-    .toFormat(format)
-    .resize(resizeOptions)
-    .toFile(distPath)
-    .catch((err) => {
-      throw new Error(err);
-    });
-}
-
-function init() {
-  transforms.forEach((transform) => {
-    // create dist folder
-    createDir(transform.dist);
-
-    // glob all files
-    let srcPaths = glob.sync(transform.src);
-
-    // loop through files
-    srcPaths.forEach((sourcePath) => {
-      // get formats
-      let formats = transform.formats;
-      if (!Array.isArray(formats)) {
-        throw new Error(`${formats} must be an array`);
-      }
-
-      // loop through formats
-      formats.forEach((format) => {
-        // check for allowed formats
-        checkFormats(format);
-
-        // get filename and output path
-        let inputFilename = path.parse(sourcePath).name;
-        let outputPath = path.normalize(
-          `${transform.dist}/${inputFilename}.${format}`
+    // check formats are of allowed types
+    formats.forEach((el) => {
+      if (!config.allowedFormats.includes(el)) {
+        throw new Error(
+          `Unknown format: "${el}". Allowed formats are: ${config.allowedFormats.toString()}`
         );
+      }
+    });
 
-        // resize images
-        resizeImage(sourcePath, outputPath, format, transform.options);
+    // Get image files in input directory
+    let imagesGlob = path.join(
+      inputDir,
+      `*.{${config.allowedFormats.toString()}}`
+    );
+
+    let imagesFiles = globSync(imagesGlob);
+
+    // Create output dir
+    createDir(outputDir);
+
+    // loop through all images and create Sharp promises
+    imagesFiles.forEach((file) => {
+      // Create resized images for each specified formats
+      formats.forEach((format) => {
+        // get input image name
+        let inputFileName = path.parse(file).name;
+
+        // build image output path
+        let outputPath = path.join(outputDir, `${inputFileName}.${format}`);
+
+        // bail out if image output path exists
+        if (fs.existsSync(outputPath)) return;
+
+        // create sharp promises
+        try {
+          // resize promise
+          let sharpPromise = sharp(file).resize(options).toFile(outputPath);
+
+          // push promise to array
+          sharpPromises.push(sharpPromise);
+        } catch (err) {
+          throw new Error(err);
+        }
       });
     });
   });
+
+  // resolve all promises in parallel
+  try {
+    await Promise.all(sharpPromises);
+    console.log(`${sharpPromises.length} resized images generated`);
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
-module.export = init();
+module.exports = init();

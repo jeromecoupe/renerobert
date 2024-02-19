@@ -26,14 +26,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/assets/img");
   eleventyConfig.addPassthroughCopy("./src/assets/fonts");
 
-  // deep merge
-  eleventyConfig.setDataDeepMerge(true);
+  // server config
+  eleventyConfig.setServerOptions({
+    watch: ["./dist/assets/css/**/*.css", "./dist/assets/js/**/*.js"],
+    port: 3000,
+  });
 
   // override default config
   return {
     dir: {
-      input: "./src",
-      output: "./dist",
+      input: "src",
+      output: "dist",
+      includes: "_includes",
+      data: "_data",
     },
+    templateFormats: ["njk", "md"],
+    htmlTemplateEngine: "njk",
+    markdownTemplateEngine: "njk",
   };
 };
